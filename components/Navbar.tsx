@@ -106,71 +106,74 @@ export default function Navbar() {
               <DarkModeToggle />
             </div>
             <button
-            type="button"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`md:hidden p-2 rounded-md transition-colors ${
-              scrolled
-                ? "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-                : "text-white hover:bg-white/10"
-            }`}
-            aria-label="Toggle menu"
-            aria-expanded={mobileMenuOpen}
-          >
-            {mobileMenuOpen ? (
-              <X className="h-6 w-6" />
-            ) : (
-              <Menu className="h-6 w-6" />
-            )}
-          </button>
+              type="button"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className={`md:hidden p-2 rounded-md transition-colors ${
+                scrolled
+                  ? "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                  : "text-white hover:bg-white/10"
+              }`}
+              aria-label="Toggle menu"
+              aria-expanded={mobileMenuOpen}
+            >
+              {mobileMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
-        <div
-          className={`md:hidden fixed inset-x-0 top-16 bottom-0 z-40 transition-all duration-300 ease-in-out overflow-y-auto ${
-            mobileMenuOpen
-              ? "opacity-100 translate-y-0 pointer-events-auto"
-              : "opacity-0 -translate-y-4 pointer-events-none"
-          } ${
-            scrolled
-              ? "bg-white dark:bg-gray-900 shadow-lg border-t border-gray-200 dark:border-gray-700"
-              : "bg-gray-900/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg"
-          }`}
-        >
-          <div className="px-4 pt-4 pb-6 space-y-1">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={(e) => handleLinkClick(e, link.href)}
-                className={`block px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200 ${
-                  scrolled
-                    ? "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-                    : "text-white hover:bg-white/10"
-                }`}
-              >
-                {link.name}
-              </a>
-            ))}
-            {/* Dark Mode Toggle in Mobile Menu */}
-            <div className="px-4 py-3">
-              <div className={`flex items-center justify-between px-4 py-2 rounded-lg ${
-                scrolled
-                  ? "bg-gray-100 dark:bg-gray-800"
-                  : "bg-white/10"
-              }`}>
-                <span className={`text-base font-medium ${
-                  scrolled
-                    ? "text-gray-700 dark:text-gray-300"
-                    : "text-white"
-                }`}>
-                  Dark Mode
-                </span>
-                <DarkModeToggle />
+        {mobileMenuOpen && (
+          <div
+            className={`md:hidden fixed inset-x-0 top-16 bottom-0 z-40 transition-all duration-300 ease-in-out overflow-y-auto ${
+              scrolled
+                ? "bg-white dark:bg-gray-900 shadow-lg border-t border-gray-200 dark:border-gray-700"
+                : "bg-gray-900/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg"
+            }`}
+          >
+            <div className="px-4 pt-4 pb-6 space-y-1">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={(e) => handleLinkClick(e, link.href)}
+                  className={`block px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200 ${
+                    scrolled
+                      ? "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                      : "text-white hover:bg-white/10"
+                  }`}
+                >
+                  {link.name}
+                </a>
+              ))}
+              {/* Dark Mode Toggle in Mobile Menu */}
+              <div className="px-4 py-3">
+                <div
+                  className={`flex items-center justify-between px-4 py-2 rounded-lg ${
+                    scrolled
+                      ? "bg-gray-100 dark:bg-gray-800"
+                      : "bg-white/10"
+                  }`}
+                >
+                  <span
+                    className={`text-base font-medium ${
+                      scrolled
+                        ? "text-gray-700 dark:text-gray-300"
+                        : "text-white"
+                    }`}
+                  >
+                    Dark Mode
+                  </span>
+                  <DarkModeToggle />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        
+        )}
+
         {/* Overlay for mobile menu */}
         {mobileMenuOpen && (
           <div
